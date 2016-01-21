@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-28 22:48:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.ordersystem.domain">
+    <class name="Offices" table="offices" catalog="classicmodels">
+        <id name="officeCode" type="string">
+            <column name="officeCode" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="city" type="string">
+            <column name="city" length="50" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="50" not-null="true" />
+        </property>
+        <property name="addressLine1" type="string">
+            <column name="addressLine1" length="50" not-null="true" />
+        </property>
+        <property name="addressLine2" type="string">
+            <column name="addressLine2" length="50" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="50" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="50" not-null="true" />
+        </property>
+        <property name="postalCode" type="string">
+            <column name="postalCode" length="15" not-null="true" />
+        </property>
+        <property name="territory" type="string">
+            <column name="territory" length="10" not-null="true" />
+        </property>
+        <set name="employeeses" table="employees" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="officeCode" length="10" not-null="true" />
+            </key>
+            <one-to-many class="Employees" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+.homeredirect{
+	height:30%;
+	float:right;
+	margin-right:10px;
+	margin-top:10px;
+}
+.summaryredirect{
+	height:30%;
+	float:left;
+	margin-left:10px;
+	margin-top:10px;
+}
+.disableTag>a:not(.Shipped){
+	color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}

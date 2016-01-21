@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-28 22:48:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping  package="com.ordersystem.domain">
+    <class name="Orders" table="orders" catalog="classicmodels">
+        <id name="orderNumber" type="int">
+            <column name="orderNumber" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="customers" class="Customers" fetch="select">
+            <column name="customerNumber" not-null="true" />
+        </many-to-one>
+        <property name="orderDate" type="date">
+            <column name="orderDate" length="10" not-null="true" />
+        </property>
+        <property name="requiredDate" type="date">
+            <column name="requiredDate" length="10" not-null="true" />
+        </property>
+        <property name="shippedDate" type="date">
+            <column name="shippedDate" length="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="15" not-null="true" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="65535" />
+        </property>
+        <set name="orderdetailses" table="orderdetails" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="orderNumber" not-null="true" />
+            </key>
+            <one-to-many class="Orderdetails" />
+        </set>
+    </class>
+</hibernate-mapping>

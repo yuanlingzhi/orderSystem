@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-28 22:48:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.ordersystem.domain">
+    <class name="Employees" table="employees" catalog="classicmodels">
+        <id name="employeeNumber" type="int">
+            <column name="employeeNumber" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="offices" class="Offices" fetch="select">
+            <column name="officeCode" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="employees" class="Employees" fetch="select">
+            <column name="reportsTo" />
+        </many-to-one>
+        <property name="lastName" type="string">
+            <column name="lastName" length="50" not-null="true" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="firstName" length="50" not-null="true" />
+        </property>
+        <property name="extension" type="string">
+            <column name="extension" length="10" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="jobTitle" type="string">
+            <column name="jobTitle" length="50" not-null="true" />
+        </property>
+        <set name="employeeses" table="employees" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="reportsTo" />
+            </key>
+            <one-to-many class="Employees" />
+        </set>
+        <set name="customerses" table="customers" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="salesRepEmployeeNumber" />
+            </key>
+            <one-to-many class="Customers" />
+        </set>
+    </class>
+</hibernate-mapping>

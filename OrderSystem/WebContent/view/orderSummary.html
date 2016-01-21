@@ -1,0 +1,29 @@
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<div class="k-block k-info-colored">
+	<h1>Order Summary Page:</h1>
+	<h2>{{message}}</h2>
+	<table ng-show="showsummary" class="table table-striped table-bordered" cellspacing="0" width="100%">
+	<thead>
+            <tr>
+                <th>Order Number</th>
+                <th>First Name</th>
+                <th>LastName</th>
+                <th>Order Status</th>
+                <th>Order Date</th>
+                <th>Shipped Date</th>
+            </tr>
+     </thead>
+     <tbody>
+     	<tr ng-repeat="order in data track by $index">
+     		<td>{{order.order_number}}</td>
+     		<td>{{order.first_name}}</td>
+     		<td>{{order.last_name}}</td>
+     		<td class="disableTag" ><a class="{{order.order_status}}" href="./#/detail/{{order.order_number}}">{{order.order_status}}</a></td>
+     		<td>{{order.order_date}}</td>
+     		<td>{{order.shipped_date}}</td>
+     	</tr>
+     </tbody>
+	</table>
+	<span class="homeredirect"><a href="./#/">Back to Welcome</a></span>
+</div>

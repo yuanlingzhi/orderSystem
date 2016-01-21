@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-12-28 22:48:12 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping  package="com.ordersystem.domain">
+    <class name="Products" table="products" catalog="classicmodels">
+        <id name="productCode" type="string">
+            <column name="productCode" length="15" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="productlines" class="Productlines" fetch="select">
+            <column name="productLine" length="50" not-null="true" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="productName" length="70" not-null="true" />
+        </property>
+        <property name="productScale" type="string">
+            <column name="productScale" length="10" not-null="true" />
+        </property>
+        <property name="productVendor" type="string">
+            <column name="productVendor" length="50" not-null="true" />
+        </property>
+        <property name="productDescription" type="string">
+            <column name="productDescription" length="65535" not-null="true" />
+        </property>
+        <property name="quantityInStock" type="short">
+            <column name="quantityInStock" not-null="true" />
+        </property>
+        <property name="buyPrice" type="double">
+            <column name="buyPrice" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="msrp" type="double">
+            <column name="MSRP" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="orderdetailses" table="orderdetails" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productCode" length="15" not-null="true" />
+            </key>
+            <one-to-many class="Orderdetails" />
+        </set>
+    </class>
+</hibernate-mapping>
